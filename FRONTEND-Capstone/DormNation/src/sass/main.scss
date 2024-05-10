@@ -1,0 +1,40 @@
+@import "abstracts/functions";
+@import "abstracts/mixins";
+// @import "abstracts/placeholders";
+@import "abstracts/variables";
+
+@import "base/animations";
+@import "base/base";
+@import "base/typography";
+@import "base/utilities";
+
+@import "components/bookings";
+@import "components/button";
+@import "components/card";
+@import "components/carousel";
+@import "components/composition";
+@import "components/dorm-room";
+@import "components/feature-box";
+@import "components/list-of-properties";
+@import "components/log";
+@import "components/navheader";
+@import "components/partner-selection";
+@import "components/popup-images";
+@import "components/popup";
+@import "components/property-dorms-page";
+@import "components/property-reviews";
+@import "components/search-bar";
+@import "components/search-item";
+
+@import "layout/footer";
+@import "layout/header";
+@import "layout/grid";
+
+@import "pages/home";
+
+
+
+
+/* .logo:hover {
+    animation: moveInRight 1s ease-out;
+} */

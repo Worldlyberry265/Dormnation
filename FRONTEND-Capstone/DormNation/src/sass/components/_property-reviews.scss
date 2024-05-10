@@ -1,0 +1,122 @@
+.reviewsContainer{
+    border: 2px solid whitesmoke;
+    width: 100%;
+    position: relative;
+    height: max-content;
+    
+    @include respond(Iphone) {
+        // m
+    }
+}
+
+.reviewsWrapper {
+    // height: 100%;
+    padding: 1rem 2rem 1rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    display: none;
+}
+
+.reviewActive {
+    display: block;
+}
+
+.reviewerRating {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    // align-items: center;
+    &-span {
+        color: black;
+        font-weight: 500;
+        font-size: 2rem;
+        // margin-right: 2rem;
+        // float: left;
+    }
+
+    &-button {
+        background-color: #003580;
+        color: white;
+        padding: .7rem;
+        font-weight: bold;
+        border: none;
+        // float: left;
+        border-radius: 7px;
+        border-bottom-left-radius: 0px;
+    }
+}
+
+.reviewerName {
+font-size: 2rem;
+color: black;
+font-weight: 700;
+margin-bottom: .5rem;
+border-bottom: 3px solid $color-border;
+}
+
+.actualReview {
+    font-size: 1.5rem;
+    color: black;
+    font-weight: 500;
+}
+
+
+.btn-slider {
+    position: absolute;
+    // top:%;
+    // bottom: 0;
+    // @include verCenter;
+    // display: flex;
+    // align-items: center;
+    // justify-content: center;
+    width: 15%;
+    padding: 0;
+    color: black;
+    text-align: center;
+    background: 0 0;
+    border: 0;
+    cursor: pointer;
+    
+    
+    width: max-content;
+    height: max-content;
+    // background-color: black;
+}
+
+.btn-prev {
+    left: -1rem;
+    top: 5rem;
+}
+
+.btn-next {
+    right: -1rem;
+    top: 5rem;
+}
+
+.icon-slider {
+    color: black;
+    opacity: .5;
+    transition: all 0.15s ease;
+    border-radius: 50%;
+}
+
+.icon-slider:hover {
+    opacity: 0.9;
+    transform: scale(1.3);
+    transition: transform .8s;
+}
+
+.icon-slider:active {
+    opacity: 0.5;
+    transform: scale(1);
+}
+
+.icon-slider:not(:focus) {
+    transition: .8s;
+}
+
+.icon-slider-next,
+.icon-slider-prev {
+    font-size: 2rem;
+}

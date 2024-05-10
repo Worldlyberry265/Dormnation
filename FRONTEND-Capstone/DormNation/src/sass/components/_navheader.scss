@@ -1,0 +1,119 @@
+.navbar {
+    height: 5rem;
+    background-color: $color-primary-dark;
+    display: flex;
+    justify-content: center;
+    font-size: 3rem;
+    padding-top: 1rem;
+}
+
+.navContainer {
+    width: 100%;
+    color: $color-white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    @include respond(Iphone) {
+        // justify-content: flex-start;
+        max-width: 55rem;
+    }
+
+    max-width: 120rem;
+}
+
+.logo {
+
+    &:link,
+    &:active,
+    &:visited{
+        color: white;
+    }
+    color: white;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+
+    @include respond(Iphone) {
+        font-size: 3rem;
+        padding-left: 1rem;
+
+    }
+}
+
+.navButton {
+    margin-left: 2rem;
+    border: none;
+    font-size: 1.5rem;
+    padding: .5rem 1rem;
+    cursor: pointer;
+    color: $color-grey-dark-3;
+    text-decoration: none;
+    background-color: white;
+
+    @include respond(Iphone) {
+        font-size: 1.5rem;
+        padding-left: 1rem;
+        margin-bottom: 2rem;
+        &:last-child {
+            margin-right: 2rem;
+        }
+
+    }
+}
+
+.secondaryHeader {
+    background-color: $color-primary-dark;
+    color: white;
+    display: flex;
+    justify-content: center;
+    font-size: 2rem;
+}
+
+
+.headerContainer {
+    width: 100%;
+    max-width: 120rem;
+    margin: 2rem 0rem 0rem 0rem;
+}
+
+.headerList {
+    display: flex;
+    gap: 4rem;
+    margin-bottom: 5rem;
+
+    @include respond(Iphone) {
+        padding-left: 1rem;
+        font-size: 1.3rem;
+        gap: .5rem;
+    }
+}
+
+.headerListItem {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    &-span {
+        cursor: pointer;
+    }
+}
+
+.headerListItem.active {
+    border: 2px solid white;
+    padding: 1rem;
+    border-radius: 3rem;
+}
+
+.headerDesc {
+    margin: 2rem 0rem;
+}
+
+.headerBtn {
+    background-color: $color-primary;
+    color: white;
+    font-weight: 500;
+    border: none;
+    padding: 1rem;
+    cursor: pointer;
+}

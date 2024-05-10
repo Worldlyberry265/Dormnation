@@ -1,0 +1,95 @@
+<div *ngIf="images && images.length > 0" class="carousel-container">
+    <img *ngFor="let image of images; let i=index" [src]="image" [alt]="imageAlt"
+        [ngClass]="{'image-active': selectedIndex === i, 'fade' : Enablefade === true} " class="fade">
+
+    <div class="carousel-dot-container">
+        <span *ngFor="let dot of dotsCount; let i=index" class="dot" [ngClass]="{'active': dotsIndex === i}"
+            (click)="selectImage(i)">
+        </span>
+    </div>
+
+    <button class="btn-carousel btn-prev" (click)="onPrevClick()">
+        <i class="fa-solid fa-circle-arrow-left icon-carousel icon-prev"></i>
+    </button>
+    <button class="btn-carousel btn-next" (click)="onNextClick()">
+        <i class="fa-solid fa-circle-arrow-right icon-carousel icon-next" ></i>
+    </button>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <ejs-carousel
+          cssClass="indicator-type"
+          indicatorsType="Dynamic"
+          [autoPlay]="false"
+        > -->
+<!-- <e-carousel-items>
+            <e-carousel-item>
+              <ng-template #template>
+                <figure class="img-container">
+                  <img
+                    src="https://ej2.syncfusion.com/angular/demos/assets/carousel/images/bridge.jpg"
+                    alt="bridge"
+                    style="height:100%;width:100%;"
+                  />
+                  <figcaption class="img-caption">
+                    Golden Gate Bridge, San Francisco
+                  </figcaption>
+                </figure>
+              </ng-template> </e-carousel-item
+            ><e-carousel-item>
+              <ng-template #template>
+                <figure class="img-container">
+                  <img
+                    src="https://ej2.syncfusion.com/angular/demos/assets/carousel/images/bridge.jpg"
+                    alt="bridge"
+                    style="height:100%;width:100%;"
+                  />
+                  <figcaption class="img-caption">
+                    Golden Gate Bridge, San Francisco
+                  </figcaption>
+                </figure>
+              </ng-template> </e-carousel-item
+            ><e-carousel-item>
+              <ng-template #template>
+                <figure class="img-container">
+                  <img
+                    src="https://ej2.syncfusion.com/angular/demos/assets/carousel/images/bridge.jpg"
+                    alt="bridge"
+                    style="height:100%;width:100%;"
+                  />
+                  <figcaption class="img-caption">
+                    Golden Gate Bridge, San Francisco
+                  </figcaption>
+                </figure>
+              </ng-template> </e-carousel-item
+            ><e-carousel-item>
+              <ng-template #template>
+                <figure class="img-container">
+                  <img
+                    src="https://ej2.syncfusion.com/angular/demos/assets/carousel/images/bridge.jpg"
+                    alt="bridge"
+                    style="height:100%;width:100%;"
+                  />
+                  <figcaption class="img-caption">
+                    Golden Gate Bridge, San Francisco
+                  </figcaption>
+                </figure>
+              </ng-template>
+            </e-carousel-item>
+          </e-carousel-items>
+        </ejs-carousel> -->

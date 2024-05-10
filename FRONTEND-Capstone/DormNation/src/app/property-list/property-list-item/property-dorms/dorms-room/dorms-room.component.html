@@ -1,0 +1,53 @@
+<div class="roomWrapper">
+
+    <div class="room__img-Container">
+        <!-- routerLink="/property-dorms#RoomImagesPopup" -->
+        <span (click)="showPopup()"  class="room__img-numbs">+ 29</span>
+        <img class="room__img" [src]="RoomInfo['MainImagePath']">
+    </div>
+    <h5 class="room__Title"> {{ RoomInfo['Title'] }}</h5>
+    <p class="room__detail">Fits only {{ RoomInfo['Capacity'] }}</p>
+    <p class="room__detail">{{ RoomInfo['Beds'] }}</p>
+    <p class="room__detail">{{ RoomInfo['Area'] }} m&#178; </p>
+    <p class="room__detail">{{ RoomInfo['Price'] }}$ per month</p>
+    <p class="room__detail">Only {{ RoomInfo['RemainingRooms'] }} rooms of such type are available</p>
+
+    <div class="room__Amenties">
+
+        <h5 class="room__Amenties-Title"> Amenties</h5>
+        <p *ngIf="RoomInfo['Tv']" class="room__Amenties-item">Has TV</p>
+        <p *ngIf="RoomInfo['Wind']" class="room__Amenties-item">Has window</p>
+        <p *ngIf="RoomInfo['Balcony']" class="room__Amenties-item">Has balcony</p>
+        <p *ngIf="RoomInfo['ClothesIron']" class="room__Amenties-item">Clothes Iron</p>
+    </div>
+
+    <div class="room__Summary">
+
+        <div class="room__Summary__price">
+            <h5 class="room__Summary__price-Title"> Price Summary</h5>
+            <h4 class="room__Summary__price-duration">From {{ checkin }} Till {{ checkout }}</h4>
+            <h4 class="room__Summary__price-value">{{ duration * RoomInfo['Price'] }}$ for your whole stay</h4>
+            <p class="room__Summary__price-tax">Includes Taxes and Fees</p>
+        </div>
+
+        <div class="room__Summary__BookingBtns">
+            <button class="room__Summary__BookingBtns-btn" routerLink="/payment" [disabled]="  RoomInfo['Capacity'] <= NumberOfGuests" (click)="SendBookingInfo(true)">Share it with a partner</button>
+            <button class="room__Summary__BookingBtns-btn" routerLink="/payment" (click)="SendBookingInfo(false)">Book now</button>
+        </div>
+
+    </div>
+</div>
+
+
+<app-popup *ngIf="PopupDisplay" [images]="RoomInfo['ImagesPaths']"></app-popup>
+
+
+
+
+
+
+
+
+
+
+

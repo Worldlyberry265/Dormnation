@@ -1,0 +1,9 @@
+<div class="navbar">
+    <div class="navContainer">
+        <a class="logo" routerLink="/homepage">DormNation</a>
+        <div class="navItem">
+            <a class="navButton" (click)="signUp()" routerLink="/signup">Register</a>
+            <a class="navButton" (click)="log()" routerLink="/login">{{logs ? 'Logout' : 'Login'}}</a>
+        </div>
+    </div>
+</div>

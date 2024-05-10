@@ -1,0 +1,43 @@
+<div class="searchItem">
+    <img [src]="ImgSrc" alt="Some image" class="siImg">
+
+    <div class="siDesc">
+        <div>
+            <h1 class="siTitle">{{ Title}}</h1>
+            <i *ngFor="let star of starlength" class="fa-solid fa-star filledStar"></i>
+        </div>
+        <span *ngIf="Parking" class="siFeatures">
+            Has Parking
+        </span>
+        <span *ngIf="SharedKitchen" class="siDistance">Has Shared Kitchen</span>
+        <span class="siTaxi0p">For {{ Gender === 'Both'  || Gender === 'Mixed' ? 'both Males and Females' : (Gender +'s Only')}}</span>
+        <span class="siSubtitle">
+            {{ Distance >= 1000 ? Distance/1000 + 'km' : Distance + 'm' }} away only from {{ Location }}
+        </span>
+        <span class="siCancel0p"> Cheapest room suitable for you is for {{CheapestPrice}} $ per month</span>
+        <span class="siCancel0pSubtitle">
+            The room suits {{ NumberOfStudents }} students
+        </span>
+    </div>
+    <div class="siDetails">
+        <div class="siRating">
+
+             <span class="siRating-span">
+                <ng-container *ngIf="Rating < 6">Bad</ng-container>
+                <ng-container *ngIf="Rating === 6">Passable</ng-container>
+                <ng-container *ngIf="Rating > 6 && Rating < 7">Passable</ng-container>
+                <ng-container *ngIf="Rating >= 7 && Rating < 8">Good</ng-container>
+                <ng-container *ngIf="Rating >= 8 && Rating < 9">Excellent</ng-container>
+                <ng-container *ngIf="Rating >= 9 && Rating <= 10">Wonderful</ng-container>
+              </span>
+
+              <button class="siRating-button">{{Rating === 10 ? 10 : (Rating | number:'1.1-1')}}</button>
+        </div>
+        <div class="siDetailsTexts">
+            <span class="siPrice">{{ CheapestPrice * Duration }} $</span>
+            <span class="siTax0p">Includes taxes and fees</span>
+            <a [routerLink]="'/property-dorms/' + ID" class="siCheckButton">See availablity</a>
+
+        </div>
+    </div>
+</div>

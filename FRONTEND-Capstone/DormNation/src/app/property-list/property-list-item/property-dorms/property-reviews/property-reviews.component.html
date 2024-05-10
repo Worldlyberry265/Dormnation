@@ -1,0 +1,28 @@
+<div class="reviewsContainer">
+    <div *ngFor="let review of reviews; let i=index" class="reviewsWrapper" [ngClass]="{'reviewActive': selectedIndex === i}">
+        <h4 class="reviewerName">{{ review.revName}}</h4>
+
+        <div class="reviewerRating">
+            <span class="reviewerRating-span">
+                <ng-container *ngIf="review.revRating < 6">Bad</ng-container>
+                <ng-container *ngIf="review.revRating === 6">Passable</ng-container>
+                <ng-container *ngIf="review.revRating > 6 && review.revRating < 7">Passable</ng-container>
+                <ng-container *ngIf="review.revRating === 7">Good</ng-container>
+                <ng-container *ngIf="review.revRating > 7 && review.revRating < 8">Good</ng-container>
+                <ng-container *ngIf="review.revRating === 8 || review.revRating === 9">Excellent</ng-container>
+                <ng-container *ngIf="review.revRating > 9 && review.revRating <= 10">Wonderful</ng-container>
+              </span>
+              
+                    <button class="reviewerRating-button">{{review.revRating === 10 ? 10 : (review.revRating | number:'1.1-1')}}</button>
+            </div>
+
+
+        <p class="actualReview">{{review.revDesc}}</p>
+    </div>
+    <button class="btn-slider btn-prev" (click)="onPrevClick()">
+        <i class="fa-solid fa-arrow-left icon-slider icon-slider-prev"></i>
+    </button>   
+    <button class="btn-slider btn-next" (click)="onNextClick()">
+        <i class="fa-solid fa-arrow-right icon-slider icon-slider-next" ></i>
+    </button>
+</div>

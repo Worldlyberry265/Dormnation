@@ -1,0 +1,10 @@
+<div class="search-bar__calendar">
+    <label class="search-bar__calendar-label" for="dateRangePicker">Check-in/out:</label>
+    <!-- <mat-form-field class="search-bar__calendar-selector"> -->
+      <input matInput [matDatepicker]="picker" [min]="minDate" [max]="maxDate" required>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker startView="year" [startAt]="startDate" (opened)="openCalendar()"></mat-datepicker>
+    <!-- </mat-form-field> -->
+  </div>
+
+  

@@ -1,0 +1,191 @@
+<!-- <div class="themeContainer" [ngClass]="{ 'darkTheme' : darktheme}">
+    <i (click)="changeTheme()" [ngClass]="{ 'darkTheme' : darktheme}" class="fa-solid fa-sun darkmode"></i>
+</div> -->
+<!-- [ngClass]="{ 'darkTheme' : darktheme}" -->
+<!-- [ngClass]="{ 'white-color' : darktheme}" -->
+<!-- [ngClass]="{ 'carousel-shadow' : !darktheme}" -->
+
+
+<div class="propertyPageContainer">
+    <div class="propertyPageWrapperPrimary">
+        <div class="propertyPageWrapper">
+
+
+
+            <div class="RatingandTitleContainer">
+
+                <div class="ratingAndStarIndex">
+                    <div>
+                        <h1 [ngClass]="{ 'white-color' : darktheme}" class="TitleRating">{{ Title }}</h1>
+                        <div class="propertyStarIndex">
+                            <i *ngFor="let star of starIndex" class="fa-solid fa-star filledStar"></i>
+                        </div>
+                    </div>
+                    <div class="propertyRating">
+
+                        <span class="propertyRating-span" [ngClass]="{ 'white-color' : darktheme}">
+                            <ng-container *ngIf="Rating < 6">Bad</ng-container>
+                            <ng-container *ngIf="Rating === 6">Passable</ng-container>
+                            <ng-container *ngIf="Rating > 6 && Rating < 7">Passable</ng-container>
+                            <ng-container *ngIf="Rating >= 7 && Rating < 8">Good</ng-container>
+                            <ng-container *ngIf="Rating >= 8 && Rating < 9">Excellent</ng-container>
+                            <ng-container *ngIf="Rating >= 9 && Rating <= 10">Wonderful</ng-container>
+                      </span>
+
+
+                        <!-- <button class="propertyRating-button">{{10.0 == 10.0 ? 10 : 9}}</button> -->
+                        <button class="propertyRating-button">{{Rating === 10 ? 10 : (Rating | number:'1.1-1')}}</button>
+                    </div>
+                </div>
+
+
+                <div [ngClass]="{ 'carousel-shadow' : !darktheme}">
+                    <app-carousel [images]="ImagesPaths"></app-carousel>
+                </div>
+
+            </div>
+
+            <div class="mapAndReviewsContainer">
+                <app-property-reviews style="float: left;" [reviews]="reviews"></app-property-reviews>
+                <iframe #googleMapIframe class="googleMap"
+                    [src]="GoogleMap | safeUrl"
+                    width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+
+
+        <div class="propertyDescDormsWrapper">
+
+            <div class="rules">
+                <div *ngIf="Visitors" class="ruleWrapper">
+                    <i class="fa-solid fa-user-large ruleWrapper-icon"></i>
+                    <span class="ruleWrapper-span">: Does allow visitors</span>
+                </div>
+                <div *ngIf="!Visitors" class="ruleWrapper">
+                    <i class="fa-solid fa-user-large-slash ruleWrapper-icon"></i>
+                    <span [ngClass]="{ 'white-color' : darktheme}" class="ruleWrapper-span">: Doesn't allow
+                        visitors</span>
+                </div>
+                <div class="ruleWrapper">
+                    <i class="fa-solid fa-clock ruleWrapper-icon"></i>
+                    <span [ngClass]="{ 'white-color' : darktheme}" class="ruleWrapper-span">: Quite hours are after
+                        {{QuiteHours | formatHours}}</span>
+                </div>
+                <div class="ruleWrapper">
+                    <i class="fa-solid fa-dog ruleWrapper-icon"></i>
+                    <span [ngClass]="{ 'white-color' : darktheme}" class="ruleWrapper-span">: {{ Pets ? 'Does' : 'Does not' }} allow pets</span>
+                </div>
+                <div class="ruleWrapper">
+                    <i class="fa-solid fa-venus-mars ruleWrapper-icon"></i>
+                    <span [ngClass]="{ 'white-color' : darktheme}" class="ruleWrapper-span">: Allows {{ Gender === 'Male' ? 'only males' : Gender === 'Female' ? 'only females' : 'both males and females'}}</span>
+                </div>
+
+
+            </div>
+
+            <div class="description">
+                <h4 class="description__Title">Description</h4>
+                <!-- <span *ngFor="let dot of dotsCount; let i=index" class="dot" [ngClass]="{'active': dotsIndex === i}"
+                (click)="selectImage(i)"> -->
+                <p class="description__value" *ngFor="let description of Descriptions">
+                    {{description}}
+                </p>
+
+            </div>
+
+
+            <div class="popularfeatures">
+                <h4 class="popularfeatures__Title">Popular Features</h4>
+
+                <div class="popularfeatures__Container">
+                    <div *ngIf="DailyHouseKeeping" class="popularfeatures__feature-Wrapper">
+                        <i class="fa-solid fa-broom popularfeatures__feature-icon"></i>
+                        <span class="popularfeatures__feature-span"> Daily HouseKeeping</span>
+                    </div>
+                    <div *ngIf="Parking" class="popularfeatures__feature-Wrapper">
+                        <i class="fa-solid fa-square-parking popularfeatures__feature-icon"></i>
+                        <span class="popularfeatures__feature-span"> Parking</span>
+                    </div>
+                    <div *ngIf="SmokingArea" class="popularfeatures__feature-Wrapper">
+                        <i class="fa-solid fa-smoking popularfeatures__feature-icon"></i>
+                        <span class="popularfeatures__feature-span"> Smoking Area</span>
+                    </div>
+
+                    <div *ngIf="Wifi" class="popularfeatures__feature-Wrapper">
+                        <i class="fa-solid fa-wifi popularfeatures__feature-icon"></i>
+                        <span class="popularfeatures__feature-span">Wifi</span>
+                    </div>
+
+                    <div *ngIf="Breakfast" class="popularfeatures__feature-Wrapper">
+                        <i class="fa-solid fa-mug-saucer popularfeatures__feature-icon"></i>
+                        <span class="popularfeatures__feature-span">Breakfast</span>
+                    </div>
+
+                    <div *ngIf="SharedKitchen" class="popularfeatures__feature-Wrapper">
+                        <i class="fa-solid fa-utensils popularfeatures__feature-icon"></i>
+                        <span class="popularfeatures__feature-span">Shared KItchen</span>
+                    </div>
+
+                    <div *ngIf="AirConditioning" class="popularfeatures__feature-Wrapper">
+                        <i class="fa-solid fa-fan popularfeatures__feature-icon"></i>
+                        <span class="popularfeatures__feature-span">Air conditioning</span>
+                    </div>
+
+                    <div *ngIf="UnCutElectricity" class="popularfeatures__feature-Wrapper">
+                        <i class="fa-solid fa-bolt popularfeatures__feature-icon"></i>
+                        <span class="popularfeatures__feature-span">24h Electricity</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="roomsContainer">
+                <h3 class="roomsContainer__Title">Choose Your Dorm</h3>
+
+                <app-dorms-room *ngFor="let room of Rooms" [RoomInfo]="room" [DormId]="ID"></app-dorms-room>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<!-- <br> -->
+<app-footer></app-footer>
+
+
+<!-- <div class="popup" id="RoomImagesPopup"> -->
+<div class="popup">
+    <app-carousel [images]="ImagesPaths"></app-carousel>
+</div>
+
+
+
+<!-- <div class="popup" id="RoomImagesPopup">
+    <div class="popup__content">
+        <div class="popup__left">
+            <img src="img/nat-8.jpg" alt="Tour Photo" class="popup__img">
+            <img src="img/nat-9.jpg" alt="Tour Photo" class="popup__img">
+        </div>
+        <div class="popup__right">
+            <a href="#section-tours" class="popup__close">&times;</a>
+            <h2 class="heading-secondary u-margin-bottom-small">Start booking now</h2>
+            <h2 class="heading-tertiary u-margin-bottom-small">Important &ndash; Please read these terms before booking
+            </h2>
+            <p class="popup__text">
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+                scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
+                into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the
+                release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing
+                software like Aldus PageMaker including versions of Lorem Ipsum. Lorem ipsum dolor sit amet, consectetur
+                adipisicing elit. Quo soluta consequuntur nihil sunt nostrum mollitia, ut voluptatum architecto vero
+                minus molestias libero! Voluptatum ad distinctio laudantium facilis recusandae mollitia explicabo! Lorem
+                ipsum dolor sit amet, consectetur adipisicing elit. Nisi nostrum tenetur eos quisquam voluptatum quod,
+                natus neque? Labore fugit culpa a, eius necessitatibus iure, officiis reiciendis adipisci aperiam
+                obcaecati quos! Lorem ipsum dolor sit amet.</p>
+            <a href="#" class="btn btn--green">Book now</a>
+        </div>
+    </div>
+</div> -->

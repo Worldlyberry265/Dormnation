@@ -1,0 +1,139 @@
+<app-navbar></app-navbar>
+<!-- HEADER -->
+<app-header></app-header>
+<!-- List -->
+<div class="listContainer">
+    <div class="listWrapper">
+        <div class="listSearchFilterContainer">
+
+            <!-- <form class="listSearch" (ngSubmit)="submitSearchForm()" #DormTitleForm="ngForm"> -->
+            <form class="listSearch" #DormTitleForm="ngForm">
+
+                <h1 class="lsTitle">Search</h1>
+                <div class="lsItem">
+                    <label>Destination</label>
+                    <input type="text" name="destination" [(ngModel)]="SearchedTitle" autocomplete="off" (keyup)="SearchForTitle($event.target.value)" required>
+                    <ul class="lsItem__Destination-list" *ngIf="FoundTitleORLoc.length > 0">
+                        <li class="lsItem__Destination-option" *ngFor="let titleOrLoc of FoundTitleORLoc" [ngStyle]="getOptionStyle(titleOrLoc)" (click)="selectOption(titleOrLoc)">
+                            {{ titleOrLoc }}
+                        </li>
+                    </ul>
+                    </div>
+
+                <div class="lsItem">
+                    <label>Check-in/out Date</label>
+                    <ejs-daterangepicker #daterangepicker [allowEdit]="false" [start]="start" [min]="min" [max]="max"
+                        [format]="format" [depth]="depth" (focus)="openCalendar()" [(startDate)]="CheckinDate" [(endDate)]="CheckoutDate" [(ngModel)]="calendarDate" name="calendarDate" required>
+                    </ejs-daterangepicker>
+
+                    <!-- <mat-form-field class="search-bar__calendar-selector">
+                        <input matInput [matDatepicker]="picker" [min]="minDate" [max]="maxDate" required>
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker startView="year" [startAt]="startDate" (opened)="openCalendar()"></mat-datepicker>
+                      </mat-form-field> -->
+                </div>
+
+                
+
+                <div class="lsItem">
+                    <label>Options</label>
+                    <div class="lsOptions">
+                        <div class="lsOptionItem">
+                            <span class="lsOptionText">
+                                Min price per month
+                            </span>
+                            <input type="number" min="50" pattern="[0-9]*" step="50" class="lsOptionInput" name="minPrice" [(ngModel)]="minPrice"  #minPriceInput="ngModel">
+                        </div>
+                        <div class="lsOptionItem">
+                            <span class="lsOptionText">
+                                Max price per month
+                            </span>
+                            <input type="number" min="50" pattern="[0-9]*" step="50" class="lsOptionInput" name="maxPrice" [(ngModel)]="maxPrice"  #maxPriceInput="ngModel">
+                        </div>
+                        <div class="lsOptionItem">
+                            <span class="lsOptionText">
+                                Number of Students
+                            </span>
+                            <input name="NumberOfGuests" [(ngModel)]="NumberOfGuests" type="number" min="1" pattern="[0-9]*" max="6" class="lsOptionInput">
+                        </div>
+                    </div>
+                </div>
+                <!-- <button [disabled]="!DormTitleForm.valid && (minPriceInput.touched && maxPriceInput.touched)" [ngStyle]="{'opacity': (!DormTitleForm.valid && (minPriceInput.touched && maxPriceInput.touched)) ? '0.8' : '1', }" class="listSearch-button" type="submit">Search</button> -->
+                <button class="listSearch-button" (click)="submitSearchForm()" type="button">Search</button>
+
+            </form>
+
+            <form class="listFilter" (ngSubmit)="onSearchForm()" #FilterFomr="ngForm">
+                <h4>Filter By:</h4>
+
+                <div class="priceSubFilter">
+                    <input type="radio" id="PriceASC" name="sortBy" [(ngModel)]="sortByPriceDist" value="PriceASC">
+                    <label for="PriceASC">Price &uarr;</label><br>
+                    <input type="radio" id="min" name="sortBy" [(ngModel)]="sortByPriceDist" value="PriceDesc">
+                    <label for="min">Price &darr;</label><br>
+                    <input type="radio" id="distance" name="sortBy" [(ngModel)]="sortByPriceDist" value="Distance">
+                    <label for="distance">Distance</label><br><br>
+                </div>
+
+                <div class="priceSubFilter">
+                    <input type="radio" id="rating10" name="filterByRating" [(ngModel)]="filterByRating" value="10">
+                    <label for="rating10">Perfect: 10</label><br>
+                    <input type="radio" id="rating8" name="filterByRating" [(ngModel)]="filterByRating" value="8">
+                    <label for="rating8">Excellent: 8+</label><br>
+                    <input type="radio" id="rating6" name="filterByRating" [(ngModel)]="filterByRating" value="6">
+                    <label for="rating6">Pleasent: 6+</label><br><br>
+                </div>
+
+                <div class="priceSubFilter">
+                    <input type="radio" id="male" name="filterByGender" [(ngModel)]="filterByGender" value="male">
+                    <label for="male">Male</label><br>
+                    <input type="radio" id="female" name="filterByGender" [(ngModel)]="filterByGender" value="female">
+                    <label for="female">Female</label><br>
+                    <input type="radio" id="both" name="filterByGender" [(ngModel)]="filterByGender" value="both">
+                    <label for="both">Both</label><br><br>
+                </div>
+
+                <div class="priceSubFilter">
+                    <input type="radio" id="not allowed" name="filterBySharedKitchen" [(ngModel)]="filterBySharedKitchen" value="true">
+                    <label for="not allowed">Has Parking </label><br>
+                    <input type="radio" id="allowed" name="filterByParking" [(ngModel)]="filterByParking" value="true">
+                    <label for="allowed">Has Shared Kitchen</label><br><br>
+                </div>
+
+                <div class="sumbitFilter">
+                    <button class="sumbitFilter__bttn-Submit" type="submit">Filter</button>
+                    <button class="sumbitFilter__bttn-resetForm" (click)="resetForm(FilterFomr)" type="button">Reset</button>
+                </div>
+
+            </form>
+        </div>
+
+
+        <!-- <div class="listFilter">
+        </div> -->
+
+
+
+        <div class="listResult">
+            <p *ngIf="ReturnedError" class="signup__error">
+            {{ReturnedError}}
+            </p>
+            <app-property-list-item *ngFor="let dorm of Dorms" 
+            [ID]="dorm.id"
+            [ImgSrc]="dorm.mainImagePath"
+            [Title]="dorm.title"
+            [Location]="dorm.location"
+            [Rating]="dorm.rating"
+            [Stars]="dorm.stars"
+            [Parking]="dorm.parking"
+            [SharedKitchen]="dorm.sharedKitchen"
+            [Gender]="dorm.gender"
+            [Distance]="dorm.distance"
+            [CheapestPrice]="dorm.cheapestPrice"
+            [Duration]="Duration"     
+            [NumberOfStudents]="dorm.capacity"   
+            ></app-property-list-item>
+        </div>
+    </div>
+</div>
+<!-- <ngb-datepicker-month></ngb-datepicker-month> -->

@@ -1,0 +1,39 @@
+<div class="navbar">
+  <div class="navContainer">
+    <a class="logo" routerLink="/homepage">DormNation</a>
+  </div>
+</div>
+
+<form class="signup__container" (ngSubmit)="onSubmitForm()" #signupForm="ngForm">
+  <span class="signup__title">{{Log === 'Register' ? 'Sign Up' : 'Login'}}</span>
+
+  <input *ngIf="this.Log == 'Register' ? true : false" placeholder="Username*" [(ngModel)]="Username" name="username" [ngClass]="{'error': UserError}" type="text" class="signup__input" required appFloatingLabel>
+
+  <input placeholder="Email*" [(ngModel)]="Email" name="email" [ngClass]="{'error': EmailError}" type="email" class="signup__input" required appFloatingLabel>
+
+  <div class="signup__input-password">
+    <input placeholder="Password*" [(ngModel)]="password" name="password" [ngClass]="{'error': PassError}" [type]="hidePassword ? 'password' : 'text'" class="signup__input input-password" required appFloatingLabel>
+    <i *ngIf="hidePassword" [ngClass]="{'error': PassError}" class="fa-solid fa-eye-slash signup__input-span" (click)="togglePasswordVisibility()"></i>
+    <i *ngIf="!hidePassword" [ngClass]="{'error': PassError}" class="fa-solid fa-eye signup__input-span" (click)="togglePasswordVisibility()"></i>
+  </div>
+
+  <select *ngIf="this.Log == 'Register' ? true : false" [(ngModel)]="gender" name="gender" class="signup__input" required appFloatingLabel>
+    <option value=null disabled selected hidden>Gender*</option>
+    <option value="Male" class="signup__input-dropdown">Male</option>
+    <option value="Female" class="signup__input-dropdown">Female</option>
+  </select>
+  
+
+  <input *ngIf="this.Log == 'Register' ? true : false" placeholder="Age*" [(ngModel)]="age" name="age" min="15" max="59" pattern="^[1-5][0-9]" type="number" class="signup__input" required appFloatingLabel>
+
+  <p *ngIf="EmailError || UserError || PassError || ReturnedError" class="signup__error">
+    {{ WrittenError }}
+  </p>
+
+  <div class="signup__btn-container">
+    <button type="submit" [disabled]="!signupForm.valid" class="signup__btn btttn-1"> {{ Log === 'Register' ? 'Register' : 'Login'}} </button>
+    <button type="button" (click)="changeLog()" class="signup__btn btttn-2"> {{ Log === 'Register' ? 'Login' : 'Register'}} </button>
+
+    <button type="button" class="signup__btn" routerLink="/forget-password">Forgot Password</button>
+  </div> 
+</form>

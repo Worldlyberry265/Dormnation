@@ -1,0 +1,49 @@
+<app-navbar></app-navbar>
+<!-- HEADER -->
+<app-header></app-header>
+
+<div class="bookings__Container">
+    <div class="bookings__Wrapper">
+
+        <h2 class="bookings__Ongoing">Ongoing & Upcoming Bookings </h2>
+
+        <div class="bookings__Instance" *ngFor="let booking of bookings">
+
+            <img [src]="booking['ImagePath']" class="bookings__Instance-img">
+
+            <div class="bookings__Instance-Info">
+                <span class="bookings__Instance-Info-Title">{{ booking['DormTitle'] }}</span>
+                <span class="bookings__Instance-Info-Dates">{{ booking['Checkin'] }} - {{ booking['Checkout'] }}</span>
+                <span class="bookings__Instance-Info-Sharing">{{ booking['Shared'] ? 'Shared' : 'Individual Booking' }}</span>
+            </div>
+
+            <div class="bookings__Instance-Price">
+                <span class="bookings__Instance-Price-Value">{{ booking['Price'] }}$</span>
+            </div>
+
+
+        </div>
+
+
+        <h2 class="bookings__Ongoing"> Past Bookings </h2>
+
+        <div class="bookings__Instance" *ngFor="let booking of pastBookings">
+
+            <img [src]="booking['ImagePath']" class="bookings__Instance-img">
+
+            <div class="bookings__Instance-Info">
+                <span class="bookings__Instance-Info-Title">{{ booking['DormTitle'] }}</span>
+                <span class="bookings__Instance-Info-Dates">{{ booking['Checkin'] }} - {{ booking['Checkout'] }}</span>
+                <span class="bookings__Instance-Info-Sharing">{{ booking['Shared'] ? 'Shared' : 'Individual Booking' }}</span>
+            </div>
+
+            <div class="bookings__Instance-Price">
+                <span class="bookings__Instance-Price-Value">{{ booking['Price'] }}$</span>
+            </div>
+
+
+        </div>
+
+
+    </div>
+</div>
